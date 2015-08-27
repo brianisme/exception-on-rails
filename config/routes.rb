@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   post '/exception', to: 'exceptions#create', constraints: { format: 'json' }
+  get '/exception', to: 'exceptions#show', constraints: { format: 'html' }
   # end
 
   # The priority is based upon order of creation: first created -> highest priority.

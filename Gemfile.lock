@@ -36,6 +36,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    airbrake (4.1.0)
+      builder
+      multi_json
     arel (6.0.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -55,9 +58,6 @@ GEM
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     erubis (2.7.0)
-    exception_notification (4.1.1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
     execjs (2.2.2)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -103,7 +103,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails_exception_handler (2.3.4)
     railties (4.2.4)
       actionpack (= 4.2.4)
       activesupport (= 4.2.4)
@@ -154,13 +153,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   byebug
   coffee-rails (~> 4.1.0)
-  exception_notification
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.4)
-  rails_exception_handler (~> 2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

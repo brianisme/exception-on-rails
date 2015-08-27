@@ -22,5 +22,14 @@ module ExceptionOnRails
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # config.action_dispatch.show_exceptions = true
+
+    config.action_dispatch.rescue_responses = {
+        "ActiveRecord::RecordInvalid" => :bad_request
+    }
+
+    config.exceptions_app = -> (env) { ExceptionHandler.call(env) }
   end
 end
+
