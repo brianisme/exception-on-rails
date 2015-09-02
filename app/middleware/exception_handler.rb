@@ -2,18 +2,7 @@ class ExceptionHandler
   class << self
     def call(env)
       render_exception(env)
-      ##
-      # Should have a failsafe for rendering
-      ##
-      # begin
-      #   render_exception(env)
-      # rescue Exception => exception
-      #   # failsafe
-      # end
-
-
     end
-
 
     def render_exception(env)
       exception = env["action_dispatch.exception"]
