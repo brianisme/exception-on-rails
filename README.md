@@ -11,12 +11,24 @@ Install
 
 Start the server
 -----------
-`rails s`
+`rails s` or `rails s -e production`
 
 Invoke exceptions
 -----------
 - GET http://localhost:3000/exception returns 404 ActiveRecord::RecordNotFound
 - POST http://localhost:3000/exception returns 422 ActiveRecord::RecordInvalid
+
+Expected to see
+-----------
+- exception class
+- error message
+- airbrake id and link
+
+#####development env specific
+- backtrace
+- full trace
+- line number
+- file
 
 References
 -----------
