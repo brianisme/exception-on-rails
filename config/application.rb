@@ -23,13 +23,25 @@ module ExceptionOnRails
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.middleware.delete(ActionDispatch::DebugExceptions)
+    ##
+    # We can define our own response mapping
+    #
+    # EX: this will return 400 status code when ActiveRecord::RecordInvalid is thrown
+    # config.action_dispatch.rescue_responses = {
+    #   "ActiveRecord::RecordInvalid" => :bad_request
+    # }
+    #
+    # List of default codes:
+    #     https://github.com/rails/rails/blob/master/activerecord/lib/active_record/railtie.rb#L25
+    #     https://github.com/rails/rails/blob/master/actionpack/lib/action_dispatch/middleware/exception_wrapper.rb#L9
 
-    config.action_dispatch.rescue_responses = {
-      "ActiveRecord::RecordInvalid" => :bad_request
-    }
-
+    # Defining our exception application
     config.exceptions_app = -> (env) { ExceptionHandler.call(env) }
+
+    # Need to override ActionDispatch::DebugExceptions
+    # in order to bypass the default exception HTML rendering
+    config.after_initialize do
+      require File.expand_path('../../app/middleware/debug_exceptions', __FILE__)
+    end
   end
 end
-
