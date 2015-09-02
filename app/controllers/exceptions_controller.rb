@@ -1,8 +1,12 @@
 class ExceptionsController < ApplicationController
-  protect_from_forgery
 
   def create
-    throw "............"
-    render json: {}, status: 200
+    p = Product.create(name: 'updater inc')
+    p.save!
   end
+
+  def show
+    p = Product.find(-1)
+  end
+
 end
